@@ -18,6 +18,8 @@ async function getFilesList(srcDir) {
     
 }
 
+
+
 async function createDirectory(newDirPath) {
 let isCreated = await fsPromises.mkdir(newDirPath, { recursive: true }, (err) => {
     if (err) {
@@ -29,7 +31,7 @@ let isCreated = await fsPromises.mkdir(newDirPath, { recursive: true }, (err) =>
 }
 
 async function removeDirectory(newDirPath) {
-    let isRemoved = await fsPromises.rmdir(newDirPath, { recursive: true }, (err) => {
+    let isRemoved = await fsPromises.rm(newDirPath, { recursive: true }, (err) => {
         if (err) {
             return 0;
         }
@@ -204,7 +206,8 @@ async function buildHtml() {
 
     }
 }
+
+createBundleCss();
 buildHtml();
-//createBundleCss();
-//copyDirectory();
+copyDirectory();
 
