@@ -53,7 +53,11 @@ async function copyDirectory() {
     //console.log(files);
     let newDirName = 'files-copy';
     let newDirPath = path.join(dir, newDirName);
+    try {
     await removeDirectory(newDirPath);
+    } catch {
+        console.log(`Directory ${newDirPath} doesn't exist. Creating...`);
+    }
     let isCreated = await createDirectory(newDirPath);
     for(const file of files) {
     await copyFile(path.join(srcDir, file.name), path.join(newDirPath, file.name));
